@@ -1,3 +1,7 @@
+# purpose
+# This script takes a single shapefile with 88 features and saves each feature 
+# as an individual .geojson file to support community mapping efforts.
+
 # dependencies
 library(dplyr)     # data wrangling
 library(gateway)   # st. louis data
@@ -34,7 +38,8 @@ parse_nhood <- function(.data, id){
   
 }
 
-# save all neighborhoods individually
+# save all neighborhoods individually by iterating over the vector of id numbers,
+# passing ids individually to the function that was defined above
 ids %>%
   unlist() %>%
   map(~ parse_nhood(nhood, id = .x))
